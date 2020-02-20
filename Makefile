@@ -40,7 +40,7 @@ OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 #								LIBRARIES
 ################################################################################
 #NAME_DIR := $(LIBDIR)/{library}
-{LIBRARY}_DIR := $(LIB_DIR)/{LIBRARY}
+LIBFT_DIR := $(LIB_DIR)/libft
 #ADD ADDITIONAL LIBRARIES HERE ^^^
 LIB_FLAG := -l{LIBRARY NAME WITHOUT THE "lib" or file extention}
 ################################################################################
@@ -58,7 +58,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@make all -C $(LIBFT_DIR)/
 	@echo "\033[35m\t\t[COMPILING] $@\033"
-	@#$(CC) -o $@ $(OBJ) -I $(INC_DIR) -L $(LIBFT_DIR)/ $(LIB_FLAG)
+	@$(CC) -o $@ $(OBJ) -I $(INC_DIR) -L $(LIBFT_DIR)/ $(LIB_FLAG)
 	@#COMPILE EXECUTABLE ^^^^^
 	@#ar rcs $(NAME).a $(OBJ) $(LIBFT_DIR)/obj/*.o^
 	@#COMPILE LIBRARY ^^^^^^^
