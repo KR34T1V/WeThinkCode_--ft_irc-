@@ -16,7 +16,8 @@
 AUTHOR := cterblan
 #AUTHOR NAME^^^
 
-NAME := ft_irc
+SERVER := server
+CLIENT := client
 #PROJECT OUTPUT FILE NAME ^^^
 ################################################################################
 #								DIRECTORIES
@@ -55,12 +56,12 @@ CC := gcc $(CFLAGS)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(SERVER): $(OBJ)
 	@make all -C $(LIBFT_DIR)/
 	@echo "\033[35m\t\t[COMPILING] $@\033"
 	@$(CC) -o $@ $(OBJ) -I $(INC_DIR) -L $(LIBFT_DIR)/ $(LIB_FLAG)
 	@#COMPILE EXECUTABLE ^^^^^
-	@#ar rcs $(NAME).a $(OBJ) $(LIBFT_DIR)/obj/*.o^
+	@#ar rcs $(SERVER).a $(OBJ) $(LIBFT_DIR)/obj/*.o^
 	@#COMPILE LIBRARY ^^^^^^^
 	@echo "\033[32m\t\t[COMPILED SUCCESSFULLY]\033"
 	@#DON'T TOUCH ^^^
@@ -83,8 +84,8 @@ cleanlib:
 	@#ADD ADDITIONAL LIBRARIES HERE ^^^
 
 fclean: clean fcleanlib
-	@echo "\033[31m\t\t[FCLEAN]\t$(NAME)\033[0m"
-	@rm -f $(NAME)
+	@echo "\033[31m\t\t[FCLEAN]\t$(SERVER)\033[0m"
+	@rm -f $(SERVER)
 	@#ADD ADDITIONAL NAME FILES HERE ^^^
 
 fcleanlib:
@@ -93,6 +94,9 @@ fcleanlib:
 	@#ADD ADDITIONAL LIBRARIES HERE ^^^
 
 re: fclean all
+
+update:
+	git submodule update --init --recursive --remote
 
 workspace:
 	@echo "\033[36m\t\t[Building $@]\033[0m"
