@@ -34,9 +34,14 @@ LIB_DIR := lib
 #								FILES
 ################################################################################
 #SRC:= ft_function.c
-SRC :=	server_main.c
+SERVER_SRC :=	server_main.c \
+				server_bindaddr.c \
+				server_getaddrinfo.c \
+				server_readdatagram.c \
+				server_launchmessage.c
+CLIENT_SRC :=	client_main.c
 #ADD SOURCE FILES HERE ^^^
-OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
+OBJ := $(addprefix $(OBJ_DIR)/, $(SERVER_SRC:%.c=%.o))
 ################################################################################
 #								LIBRARIES
 ################################################################################
@@ -54,9 +59,19 @@ CC := gcc $(CFLAGS)
 #								RULES
 ################################################################################
 
-all: $(SERVER)
+all: $(SERVER) $(CLIENT)
 
 $(SERVER): $(OBJ)
+	@make all -C $(PRINTF_DIR)/
+	@echo "\033[35m\t\t[COMPILING] $@\033"
+	@$(CC) -o $@ $(OBJ) -I $(INC_DIR) -L $(PRINTF_DIR)/ $(LIB_FLAG)
+	@#COMPILE EXECUTABLE ^^^^^
+	@#ar rcs $(SERVER).a $(OBJ) $(PRINTF_DIR)/obj/*.o^
+	@#COMPILE LIBRARY ^^^^^^^
+	@echo "\033[32m\t\t[COMPILED SUCCESSFULLY]\033"
+	@#DON'T TOUCH ^^^
+
+$(CLIENT): $(OBJ)
 	@make all -C $(PRINTF_DIR)/
 	@echo "\033[35m\t\t[COMPILING] $@\033"
 	@$(CC) -o $@ $(OBJ) -I $(INC_DIR) -L $(PRINTF_DIR)/ $(LIB_FLAG)
@@ -111,7 +126,7 @@ workspace:
 #								SPECIAL
 ################################################################################
 
-.PHONEY := all clean fclean re workspace
+.PHONEY := all clean fclean re workspace test update
 #ADD PHONEY HERE ^^^
 
 .SILENT:
