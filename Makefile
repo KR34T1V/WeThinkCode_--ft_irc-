@@ -34,16 +34,16 @@ LIB_DIR := lib
 #								FILES
 ################################################################################
 #SRC:= ft_function.c
-SRC :=	{FILES}
+SRC :=	server_main.c
 #ADD SOURCE FILES HERE ^^^
 OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 ################################################################################
 #								LIBRARIES
 ################################################################################
 #NAME_DIR := $(LIBDIR)/{library}
-LIBFT_DIR := $(LIB_DIR)/libft
+PRINTF_DIR := $(LIB_DIR)/printf
 #ADD ADDITIONAL LIBRARIES HERE ^^^
-LIB_FLAG := -l{LIBRARY NAME WITHOUT THE "lib" or file extention}
+LIB_FLAG := -lftprintf
 ################################################################################
 #								COMPILER
 ################################################################################
@@ -54,14 +54,14 @@ CC := gcc $(CFLAGS)
 #								RULES
 ################################################################################
 
-all: $(NAME)
+all: $(SERVER)
 
 $(SERVER): $(OBJ)
-	@make all -C $(LIBFT_DIR)/
+	@make all -C $(PRINTF_DIR)/
 	@echo "\033[35m\t\t[COMPILING] $@\033"
-	@$(CC) -o $@ $(OBJ) -I $(INC_DIR) -L $(LIBFT_DIR)/ $(LIB_FLAG)
+	@$(CC) -o $@ $(OBJ) -I $(INC_DIR) -L $(PRINTF_DIR)/ $(LIB_FLAG)
 	@#COMPILE EXECUTABLE ^^^^^
-	@#ar rcs $(SERVER).a $(OBJ) $(LIBFT_DIR)/obj/*.o^
+	@#ar rcs $(SERVER).a $(OBJ) $(PRINTF_DIR)/obj/*.o^
 	@#COMPILE LIBRARY ^^^^^^^
 	@echo "\033[32m\t\t[COMPILED SUCCESSFULLY]\033"
 	@#DON'T TOUCH ^^^
@@ -79,8 +79,8 @@ clean: cleanlib
 	@#DON'T TOUCH ^^^
 
 cleanlib:
-	@echo "\033[31m\t\t[CLEANING]\t$(LIB_DIR)\033[0m"
-	@make clean -C $({LIBRARY}_DIR)
+	@echo "\033[31m\t\t[CLEANING]\t$(PRINTF_DIR)\033[0m"
+	@make clean -C $(PRINTF_DIR)
 	@#ADD ADDITIONAL LIBRARIES HERE ^^^
 
 fclean: clean fcleanlib
@@ -89,8 +89,8 @@ fclean: clean fcleanlib
 	@#ADD ADDITIONAL NAME FILES HERE ^^^
 
 fcleanlib:
-	@echo "\033[31m\t\t[FCLEAN]\t$(LIB_DIR)]\033[0m"
-	@make fclean -C $({LIBRARY}_DIR)
+	@echo "\033[31m\t\t[FCLEAN]\t$(PRINTF_DIR)]\033[0m"
+	@make fclean -C $(PRINTF_DIR)
 	@#ADD ADDITIONAL LIBRARIES HERE ^^^
 
 re: fclean all
