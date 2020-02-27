@@ -9,12 +9,10 @@ int client_connect(char *host, char *port){
     runner = head;
     while (runner != NULL){
         fd = socket(runner->ai_family,runner->ai_socktype,runner->ai_protocol);
-        ft_printf("fd: = %d\n",fd);
         if (fd == -1){
             runner = runner->ai_next;
             continue;
         }
-        ft_printf("addr = %s\nlen = %d\n", runner->ai_addr, runner->ai_addrlen);
         if (connect(fd, runner->ai_addr, runner->ai_addrlen) != -1)
             break;
         close(fd);

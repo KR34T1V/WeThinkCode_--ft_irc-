@@ -16,8 +16,9 @@ void server_readdatagram(int fd){
         char service[NI_MAXSERV];
 
         val = getnameinfo((struct sockaddr *) &peer_addr, peer_addr_len, host, NI_MAXHOST, service, NI_MAXSERV, NI_NUMERICSERV);
-         if (val == 0)
+         if (val == 0){
             ft_printf("Received %zd bytes from %s:%s\n", nread, host, service);
+         }
         else
             ft_printf("getnameinfo: %s\n", gai_strerror(val));
         if (sendto(fd, buf, nread, 0,(struct sockaddr *) &peer_addr, peer_addr_len) != nread)
