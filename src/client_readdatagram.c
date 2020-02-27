@@ -15,11 +15,12 @@ void client_readdatagram(int ac, char **av, int fd){
         }
         if (write(fd, av[i], len) != len) {
             ft_printf("partial/failed write\n");
-        i++;
+            continue;
         }
         nread = read(fd, buf, BUFF_SIZE);
         if (nread == -1)
             ft_printf("Unable to read incoming trafic");
         ft_printf("Received %zd bytes: %s\n", nread, buf);
+        i++;
     }
 }
