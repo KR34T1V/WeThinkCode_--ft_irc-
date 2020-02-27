@@ -1,11 +1,11 @@
 #include "../inc/private_irc.h"
 
-int server_bindaddr(char *port){
+int client_connect(char *host, char *port){
     int fd;
     struct addrinfo* head;
     struct addrinfo* runner;
     
-    head = server_getaddrinfo(port);
+    head = client_getaddrinfo(host, port);
     runner = head;
     while (runner != NULL){
         fd = socket(runner->ai_family,runner->ai_socktype,runner->ai_protocol);
@@ -15,14 +15,14 @@ int server_bindaddr(char *port){
             continue;
         }
         ft_printf("addr = %s\nlen = %d\n", runner->ai_addr, runner->ai_addrlen);
-        if (bind(fd, runner->ai_addr, runner->ai_addrlen) == 0)
+        if (connect(fd, runner->ai_addr, runner->ai_addrlen) != -1)
             break;
         close(fd);
         runner = runner->ai_next;
     }
     freeaddrinfo(head);
     if (runner == NULL){
-        ft_printf("Could not bind socket!\n");
+        ft_printf("Could not connect to server!\n");
         return -1;
     } else
         return fd;

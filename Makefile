@@ -39,9 +39,14 @@ SERVER_SRC :=	server_main.c \
 				server_getaddrinfo.c \
 				server_readdatagram.c \
 				server_launchmessage.c
-CLIENT_SRC :=	client_main.c
+CLIENT_SRC :=	client_main.c \
+				client_getaddrinfo.c \
+				client_connect.c \
+				client_readdatagram.c \
+				client_launchmessage.c
 #ADD SOURCE FILES HERE ^^^
-OBJ := $(addprefix $(OBJ_DIR)/, $(SERVER_SRC:%.c=%.o))
+SERVER_OBJ := $(addprefix $(OBJ_DIR)/, $(SERVER_SRC:%.c=%.o))
+CLIENT_OBJ := $(addprefix $(OBJ_DIR)/, $(CLIENT_SRC:%.c=%.o))
 ################################################################################
 #								LIBRARIES
 ################################################################################
@@ -61,22 +66,22 @@ CC := gcc $(CFLAGS)
 
 all: $(SERVER) $(CLIENT)
 
-$(SERVER): $(OBJ)
+$(SERVER): $(SERVER_OBJ)
 	@make all -C $(PRINTF_DIR)/
 	@echo "\033[35m\t\t[COMPILING] $@\033"
-	@$(CC) -o $@ $(OBJ) -I $(INC_DIR) -L $(PRINTF_DIR)/ $(LIB_FLAG)
+	@$(CC) -o $@ $(SERVER_OBJ) -I $(INC_DIR) -L $(PRINTF_DIR)/ $(LIB_FLAG)
 	@#COMPILE EXECUTABLE ^^^^^
-	@#ar rcs $(SERVER).a $(OBJ) $(PRINTF_DIR)/obj/*.o^
+	@#ar rcs $(SERVER).a $(SERVER_OBJ) $(PRINTF_DIR)/obj/*.o^
 	@#COMPILE LIBRARY ^^^^^^^
 	@echo "\033[32m\t\t[COMPILED SUCCESSFULLY]\033"
 	@#DON'T TOUCH ^^^
 
-$(CLIENT): $(OBJ)
+$(CLIENT): $(CLIENT_OBJ)
 	@make all -C $(PRINTF_DIR)/
 	@echo "\033[35m\t\t[COMPILING] $@\033"
-	@$(CC) -o $@ $(OBJ) -I $(INC_DIR) -L $(PRINTF_DIR)/ $(LIB_FLAG)
+	@$(CC) -o $@ $(CLIENT_OBJ) -I $(INC_DIR) -L $(PRINTF_DIR)/ $(LIB_FLAG)
 	@#COMPILE EXECUTABLE ^^^^^
-	@#ar rcs $(SERVER).a $(OBJ) $(PRINTF_DIR)/obj/*.o^
+	@#ar rcs $(CLIENT).a $(CLIENT_OBJ) $(PRINTF_DIR)/obj/*.o^
 	@#COMPILE LIBRARY ^^^^^^^
 	@echo "\033[32m\t\t[COMPILED SUCCESSFULLY]\033"
 	@#DON'T TOUCH ^^^
@@ -87,6 +92,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) -I $(INC_DIR) -o $@ -c $<
 	@echo "\033[33m\t\t[SUCCESS]\033[0m"
 	@#DON'T TOUCH ^^^
+
 
 clean: cleanlib
 	@echo "\033[31m\t\t[CLEANING]\t$(OBJ_DIR)\033[0m"
@@ -101,6 +107,8 @@ cleanlib:
 fclean: clean fcleanlib
 	@echo "\033[31m\t\t[FCLEAN]\t$(SERVER)\033[0m"
 	@rm -f $(SERVER)
+	@echo "\033[31m\t\t[FCLEAN]\t$(CLIENT)\033[0m"
+	@rm -f $(CLIENT)
 	@#ADD ADDITIONAL NAME FILES HERE ^^^
 
 fcleanlib:

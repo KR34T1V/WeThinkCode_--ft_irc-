@@ -29,10 +29,16 @@ typedef struct s_addrinfo {
                char            *ai_canonname;
                struct addrinfo *ai_next;
                             } t_addrinfo;
-
+//SERVER
 void server_launchmessage(char *port);
 struct addrinfo* server_getaddrinfo();
 int server_bindaddr(char *port);
 void server_readdatagram(int fd);
+
+//CLIENT
+void client_launchmessage(char *host, char *port);
+struct addrinfo* client_getaddrinfo(char *host, char *port);
+int client_connect(char *host, char *port);
+void client_readdatagram(int ac, char **av, int fd);
 
 #endif
