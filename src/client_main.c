@@ -11,7 +11,7 @@ int main(int ac, char **av){
     fd = client_connect(av[1],av[2]);
         if (fd == -1)
         return(0);
-    client_readdatagram(ac, av, fd);
-
+    //client_readdatagram(ac, av, fd);
+    //client_readstreamdata(fd);
     return (1);
 }

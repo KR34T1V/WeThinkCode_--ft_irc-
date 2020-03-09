@@ -16,29 +16,25 @@
 #include <sys/socket.h>
 #include <netdb.h>
 #include <unistd.h>
+#include <stdio.h>
+#include <sys/time.h>
+
 
 //Declarations
 
-typedef struct s_addrinfo {
-               int              ai_flags;
-               int              ai_family;
-               int              ai_socktype;
-               int              ai_protocol;
-               socklen_t        ai_addrlen;
-               struct sockaddr *ai_addr;
-               char            *ai_canonname;
-               struct addrinfo *ai_next;
-                            } t_addrinfo;
+#include "./constants.h"
+
 //SERVER
-void server_launchmessage(char *port);
-struct addrinfo* server_getaddrinfo();
-int server_bindaddr(char *port);
-void server_readdatagram(int fd);
+int                 server_connection_manage(int fd, int fd_max, fd_set *readfds, fd_set *connections);
+int                 server_connection_accept(int fd);
+int                 server_connection_listen(int fd, fd_set *connections);
+void                server_launchmessage(char *port);
+struct addrinfo*    server_getaddrinfo();
+int                 server_bindaddr(char *port);
 
 //CLIENT
-void client_launchmessage(char *host, char *port);
-struct addrinfo* client_getaddrinfo(char *host, char *port);
-int client_connect(char *host, char *port);
-void client_readdatagram(int ac, char **av, int fd);
+void                client_launchmessage(char *host, char *port);
+struct addrinfo*    client_getaddrinfo(char *host, char *port);
+int                 client_connect(char *host, char *port);
 
 #endif

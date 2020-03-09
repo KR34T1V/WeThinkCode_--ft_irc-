@@ -1,0 +1,6 @@
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
+#define SERVER_LISTEN_BACKLOG 10
+
+#endif

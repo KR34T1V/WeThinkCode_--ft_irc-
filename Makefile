@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cterblan <cterblan@student.wethinkcode>    +#+  +:+       +#+         #
+#    By: CTerblanche <1997corry@gmail.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 11:24:40 by cterblan          #+#    #+#              #
-#    Updated: 2018/09/06 15:28:19 by cterblan         ###   ########.fr        #
+#    Updated: 2020/03/09 16:25:57 by CTerblanche      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,14 @@ LIB_DIR := lib
 #SRC:= ft_function.c
 SERVER_SRC :=	server_main.c \
 				server_bindaddr.c \
+				server_connection_accept.c \
+				server_connection_manage.c \
+				server_connection_listen.c \
 				server_getaddrinfo.c \
-				server_readdatagram.c \
 				server_launchmessage.c
 CLIENT_SRC :=	client_main.c \
 				client_getaddrinfo.c \
 				client_connect.c \
-				client_readdatagram.c \
 				client_launchmessage.c
 #ADD SOURCE FILES HERE ^^^
 SERVER_OBJ := $(addprefix $(OBJ_DIR)/, $(SERVER_SRC:%.c=%.o))

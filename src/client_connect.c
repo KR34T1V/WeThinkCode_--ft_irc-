@@ -22,6 +22,8 @@ int client_connect(char *host, char *port){
     if (runner == NULL){
         ft_printf("Could not connect to server!\n");
         return -1;
-    } else
+    } else {
+        ft_printf("Connected successfully on fd: %d\n", fd);
         return fd;
+    }
 }
