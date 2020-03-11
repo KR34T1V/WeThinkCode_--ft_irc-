@@ -6,7 +6,7 @@
 #    By: CTerblanche <1997corry@gmail.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 11:24:40 by cterblan          #+#    #+#              #
-#    Updated: 2020/03/11 22:06:25 by CTerblanche      ###   ########.fr        #
+#    Updated: 2020/03/11 23:24:16 by CTerblanche      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ LIB_DIR := lib
 ################################################################################
 #SRC:= ft_function.c
 SERVER_SRC :=	s_main.c \
-				ft_getaddr_info.c
+				s_bindsocket.c \
+				ft_getaddr_IP.c \
 				
 CLIENT_SRC :=	c_main.c
 #ADD SOURCE FILES HERE ^^^

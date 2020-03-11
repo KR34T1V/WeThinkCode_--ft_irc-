@@ -17,49 +17,14 @@ int     main(){
 	struct sockaddr_storage remoteaddr;         // Client Address
 	socklen_t addrlen;
 	char    remoteIP[INET6_ADDRSTRLEN];         //Remote IP Address 
-	int yes = 1;
 	int i;
 	int j;
-	int rv;
-	struct addrinfo hints;
-	struct addrinfo *ai;
-	struct addrinfo *p;
+
 
 	FD_ZERO(&clients);			//clear clients
 	FD_ZERO(&read_fds);			//clear read_fds
 
-	//Bind a socket
-	ft_memset(&hints, 0, sizeof(hints));
-	hints.ai_family = AF_UNSPEC;				// ipv4 AF_INET | ipv6 AF_INET6
-	hints.ai_socktype = SOCK_STREAM;
-	hints.ai_flags = AI_PASSIVE;
-
-	if ((rv = getaddrinfo(NULL, port, &hints, &ai)) != 0){
-		ft_printf("IRC Server: %s\n", gai_strerror);
-		exit(1);
-	} 
-	p = ai;
-	while (p != NULL){
-		listener = socket(p->ai_family, p->ai_socktype, p->ai_protocol);
-		if (listener < 0){
-			p = p->ai_next;
-			continue;
-		}
-		//remove address already in use error
-		setsockopt(listener, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int));
-		if (bind(listener, p->ai_addr, p->ai_addrlen) < 0){
-			close(listener);
-			p = p->ai_next;
-			continue;
-		} else {
-			break;
-		}
-		p = p->ai_next;
-	}
-	if (p == NULL){
-		ft_printf("IRC Server: failed to bind\n");
-	}
-	freeaddrinfo(ai);
+	listener = s_bindsocket(port);
 	//listen
 	if (listen(listener, LISTEN_BACKLOG) == -1){
 		perror("Listen");
@@ -99,7 +64,7 @@ int     main(){
 						if (newfd > fdmax)
 							fdmax = newfd;
 					}
-					ft_printf("IRC Server: new connection from %s on socket %d\n", inet_ntop(remoteaddr.ss_family, ft_getaddr_info((struct sockaddr *)&remoteaddr), remoteIP,INET6_ADDRSTRLEN), newfd);
+					ft_printf("IRC Server: new connection from %s on socket %d\n", inet_ntop(remoteaddr.ss_family, ft_getaddr_IP((struct sockaddr *)&remoteaddr), remoteIP,INET6_ADDRSTRLEN), newfd);
 				} else {
 					//client existst and sent data
 					if ((nbytes = recv(i, buf, sizeof(buf), 0)) <= 0){

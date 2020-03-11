@@ -28,10 +28,10 @@
 #include "./constants.h"
 
 //GENERAL
-void 				*ft_getaddr_info(struct sockaddr *sa);
+void 				*ft_getaddr_IP(struct sockaddr *sa);
 
 //SERVER
-int					s_getlistener(const char* port);
+int 				s_bindsocket(const char *port);
 
 //CLIENT
 
