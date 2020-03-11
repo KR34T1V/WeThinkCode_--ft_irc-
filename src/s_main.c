@@ -25,21 +25,9 @@ int     main(){
 	FD_ZERO(&read_fds);			//clear read_fds
 
 	listener = s_bindsocket(port);
-	//listen
-	if (listen(listener, LISTEN_BACKLOG) == -1){
-		perror("Listen");
-		exit(3);
-	}
-
-	//add listener to clients
-	FD_SET(listener, &clients);
-
-	//keep track og biggest file descriptor
+	s_listen(listener, &clients);
+	//keep track of biggest file descriptor
 	fdmax = listener;
-	if (fdmax >= FD_SETSIZE){
-		ft_printf("fd limit exceeded.\ncurrent fd: %d\nmax fd: %d", fdmax, FD_SETSIZE);
-		perror("fdsize");
-	}
 
 	//main loop
 	ft_printf("Listening...\n");
@@ -47,7 +35,7 @@ int     main(){
 		read_fds = clients; //current clients
 		if (select(fdmax + 1, &read_fds, NULL, NULL, NULL) == -1){
 			perror("select");
-			exit(4);
+			exit(5);
 		}
 		//check existing connections
 		i = 0;

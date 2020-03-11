@@ -32,6 +32,7 @@ void 				*ft_getaddr_IP(struct sockaddr *sa);
 
 //SERVER
 int 				s_bindsocket(const char *port);
+void				s_listen(int listener, fd_set *clients);
 
 //CLIENT
 
