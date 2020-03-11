@@ -12,29 +12,27 @@
 
 //Includes
 #include "../lib/printf/inc/export_ft_printf.h"
-#include <sys/types.h> 
+#include <sys/types.h>
+#include <stdlib.h> 
 #include <sys/socket.h>
+#include <errno.h>
 #include <netdb.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/time.h>
+#include <arpa/inet.h>
 
 
 //Declarations
 
 #include "./constants.h"
 
+//GENERAL
+void 				*ft_getaddr_info(struct sockaddr *sa);
+
 //SERVER
-int                 server_connection_manage(int fd, int fd_max, fd_set *readfds, fd_set *connections);
-int                 server_connection_accept(int fd);
-int                 server_connection_listen(int fd, fd_set *connections);
-void                server_launchmessage(char *port);
-struct addrinfo*    server_getaddrinfo();
-int                 server_bindaddr(char *port);
+int					s_getlistener(const char* port);
 
 //CLIENT
-void                client_launchmessage(char *host, char *port);
-struct addrinfo*    client_getaddrinfo(char *host, char *port);
-int                 client_connect(char *host, char *port);
 
 #endif

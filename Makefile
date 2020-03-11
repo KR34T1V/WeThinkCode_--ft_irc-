@@ -6,7 +6,7 @@
 #    By: CTerblanche <1997corry@gmail.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 11:24:40 by cterblan          #+#    #+#              #
-#    Updated: 2020/03/09 16:25:57 by CTerblanche      ###   ########.fr        #
+#    Updated: 2020/03/11 22:06:25 by CTerblanche      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,17 +34,10 @@ LIB_DIR := lib
 #								FILES
 ################################################################################
 #SRC:= ft_function.c
-SERVER_SRC :=	server_main.c \
-				server_bindaddr.c \
-				server_connection_accept.c \
-				server_connection_manage.c \
-				server_connection_listen.c \
-				server_getaddrinfo.c \
-				server_launchmessage.c
-CLIENT_SRC :=	client_main.c \
-				client_getaddrinfo.c \
-				client_connect.c \
-				client_launchmessage.c
+SERVER_SRC :=	s_main.c \
+				ft_getaddr_info.c
+				
+CLIENT_SRC :=	c_main.c
 #ADD SOURCE FILES HERE ^^^
 SERVER_OBJ := $(addprefix $(OBJ_DIR)/, $(SERVER_SRC:%.c=%.o))
 CLIENT_OBJ := $(addprefix $(OBJ_DIR)/, $(CLIENT_SRC:%.c=%.o))
