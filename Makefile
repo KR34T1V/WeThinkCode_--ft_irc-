@@ -6,7 +6,7 @@
 #    By: CTerblanche <1997corry@gmail.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 11:24:40 by cterblan          #+#    #+#              #
-#    Updated: 2020/03/12 00:12:04 by CTerblanche      ###   ########.fr        #
+#    Updated: 2020/03/12 23:23:07 by CTerblanche      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ SERVER_SRC :=	s_main.c \
 				s_newclient.c \
 				s_recvdata.c 
 				
-CLIENT_SRC :=	c_main.c
+CLIENT_SRC :=	c_main.c \
+				ft_getaddr_IP.c
 #ADD SOURCE FILES HERE ^^^
 SERVER_OBJ := $(addprefix $(OBJ_DIR)/, $(SERVER_SRC:%.c=%.o))
 CLIENT_OBJ := $(addprefix $(OBJ_DIR)/, $(CLIENT_SRC:%.c=%.o))
