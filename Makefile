@@ -36,6 +36,7 @@ LIB_DIR := lib
 #SRC:= ft_function.c
 SERVER_SRC :=	s_main.c \
 				ft_getaddr_IP.c \
+				ft_sendall.c \
 				s_bindsocket.c \
 				s_listen.c \
 				s_newclient.c \

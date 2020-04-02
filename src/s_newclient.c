@@ -1,5 +1,10 @@
 #include "../inc/private_irc.h"
 
+/*
+	attempts to accept a new connection from the "listener", if successfull 
+	it will add the new connection to the "clients" set and if needed
+	ammend the "fdmax" to the largest fd size.
+*/
 void s_newclient(int listener, int *fdmax, fd_set *clients){
 	int newfd;
 	char    remoteIP[INET6_ADDRSTRLEN];

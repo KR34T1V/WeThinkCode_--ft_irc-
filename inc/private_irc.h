@@ -29,6 +29,7 @@
 
 //GENERAL
 void 				*ft_getaddr_IP(struct sockaddr *sa);
+int                 ft_sendall(int fd, char *buf, int *len, int flags);
 
 //SERVER
 int 				s_bindsocket(const char *port);
