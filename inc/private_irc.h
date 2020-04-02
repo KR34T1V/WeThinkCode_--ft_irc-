@@ -38,5 +38,6 @@ void 				s_newclient(int listener, int *fdmax, fd_set *clients);
 void				s_recvdata(int fd, fd_set *clients, char *buf);
 
 //CLIENT
+int                c_bind(const char *address, const char *port, struct addrinfo *server_info);
 
 #endif
