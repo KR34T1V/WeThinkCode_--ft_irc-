@@ -43,8 +43,7 @@ SERVER_SRC :=	s_main.c \
 				s_recvdata.c 
 				
 CLIENT_SRC :=	c_main.c \
-				ft_getaddr_IP.c \
-				c_bind.c
+				ft_getaddr_IP.c
 #ADD SOURCE FILES HERE ^^^
 SERVER_OBJ := $(addprefix $(OBJ_DIR)/, $(SERVER_SRC:%.c=%.o))
 CLIENT_OBJ := $(addprefix $(OBJ_DIR)/, $(CLIENT_SRC:%.c=%.o))
