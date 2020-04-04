@@ -35,8 +35,8 @@ int                 ft_sendall(int fd, char *buf, int *len, int flags);
 int 				s_bindsocket(const char *port);
 void				s_listen(int listener, fd_set *clients);
 void 				s_newclient(int listener, int *fdmax, fd_set *clients);
-void				s_recvdata(int fd, fd_set *clients, char *buf);
+int 				s_recvdata(int fd, fd_set *clients, char *buf);
 
 //CLIENT
-
+void                c_getinput(int fd);
 #endif

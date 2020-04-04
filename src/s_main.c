@@ -16,6 +16,7 @@ int     main(){
 
 
 	int i;
+	int buf_len;
 
 
 	FD_ZERO(&clients);			//clear clients
@@ -43,8 +44,13 @@ int     main(){
 					s_newclient(listener, &fdmax, &clients);
 				} else {
 					s_recvdata(i, &clients, buf);
+					buf_len = ft_strlen(buf);
+					for (int j = 0; j<=fdmax; j++){
+						if (FD_ISSET(j, &read_fds))
+							ft_sendall(i, buf, &buf_len, 0);
+					}
 				}
-			}	//new incoming connection
+			}
 			i++;
 		}	//Clients loop
 	}	//Endless Loop
