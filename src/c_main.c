@@ -48,14 +48,18 @@ int main(void){
 	}
 	inet_ntop(p->ai_family, ft_getaddr_IP((struct sockaddr *)p->ai_addr),
 	s, sizeof(s));
-	ft_printf("IRC Client: new connection to %s on socket %d\n", s, socket_fd);
+	ft_printf("IRC Client: new connection to %s:%s on socket %d\n", s, port, socket_fd);
 	freeaddrinfo(server_info);
 	if ((numbytes = recv(socket_fd, buf, BUFF_SIZE - 1, 0)) == -1){
 		perror("recv");
 		exit(1);
 	}
-	buf[numbytes]= '\0';
-	ft_printf("client: received '%s'\n", buf);
-	close(socket_fd);
-	return (0);
+	if (numbytes == 0){
+		ft_printf("IRC Client: Host closed connection.\n");
+	} else {
+		buf[numbytes]= '\0';
+		ft_printf("client: received '%s'\n", buf);
+		close(socket_fd);
+		return (0);
+	}
 }
