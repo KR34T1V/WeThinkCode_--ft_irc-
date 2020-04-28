@@ -47,7 +47,8 @@ int     main(){
 					buf_len = ft_strlen(buf);
 					for (int j = 0; j<=fdmax; j++){
 						if (FD_ISSET(j, &read_fds))
-							ft_sendall(i, buf, &buf_len, 0);
+							if (j != listener && j != i)
+								ft_sendall(j, buf, &buf_len, 0);
 					}
 				}
 			}
