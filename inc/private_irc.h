@@ -4,7 +4,6 @@
 #define _POSIX_C_SOURCE 200112L
 #define NI_MAXHOST 1025
 #define NI_MAXSERV 32
-#define BUFFER 500
 
 #define LOCAL AF_INET
 #define IPV4 AF_INET
@@ -36,7 +35,14 @@ int 				s_bindsocket(const char *port);
 void				s_listen(int listener, fd_set *clients);
 void 				s_newclient(int listener, int *fdmax, fd_set *clients);
 int 				s_recvdata(int fd, fd_set *clients, char *buf);
+void                s_get_args(char *msg);
 
 //CLIENT
 void                c_getinput(int fd);
+
+//STRUCTS
+typedef struct      s_client {
+    int             name;
+    char            nick[10];
+}                   t_client;
 #endif

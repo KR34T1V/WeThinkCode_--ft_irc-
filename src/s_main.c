@@ -44,6 +44,7 @@ int     main(){
 					s_newclient(listener, &fdmax, &clients);
 				} else {
 					s_recvdata(i, &clients, buf);
+					s_get_args(buf);
 					buf_len = ft_strlen(buf);
 					for (int j = 0; j<=fdmax; j++){
 						//ft_printf("checking %d\n", j);
