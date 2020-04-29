@@ -5,7 +5,7 @@ int main(void){
 	char *port = "1025";
 	int socket_fd;
 	int numbytes;
-	char buf[BUFF_SIZE];
+	char buf[BUFFER];
 	struct addrinfo hints;
 	struct addrinfo *server_info;
 	struct addrinfo *p;
@@ -30,8 +30,8 @@ int main(void){
 			continue;
 		}
 		//remove address already in use error
-		val = 1;
-		setsockopt(socket_fd, SOL_SOCKET, SO_REUSEADDR, &val, sizeof(int));
+		//val = 1;
+		//setsockopt(socket_fd, SOL_SOCKET, SO_REUSEADDR, &val, sizeof(int));
 		if (connect(socket_fd, p->ai_addr, p->ai_addrlen) < 0){
 			close(socket_fd);
 			perror("client: connect");
@@ -53,7 +53,7 @@ int main(void){
 	//main loop
 	while (1){
 		c_getinput(socket_fd);
-		if ((numbytes = recv(socket_fd, buf, BUFF_SIZE - 1, 0)) == -1){
+		if ((numbytes = recv(socket_fd, buf, BUFFER - 1, 0)) == -1){
 			perror("recv");
 			exit(1);
 		}
