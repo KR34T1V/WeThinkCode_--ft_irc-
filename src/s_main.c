@@ -9,7 +9,7 @@ int     main(){
 
 	fd_set clients;             //client fd list
 	fd_set read_fds;            //temp fd for select
-	char buf[BUFFER];        //Buffer for Client Data
+	char buf[MSG_SIZE];        //Buffer for Client Data
 
 	int fdmax;					//maximum fd number
 	int listener;				//listening fd
@@ -43,12 +43,11 @@ int     main(){
 				if (i == listener){
 					s_newclient(listener, &fdmax, &clients);
 				} else {
-					s_recvdata(i, &read_fds, buf);
+					s_recvdata(i, &clients, buf);
 					buf_len = ft_strlen(buf);
 					for (int j = 0; j<=fdmax; j++){
 						//ft_printf("checking %d\n", j);
-						read_fds = clients;
-						if (FD_ISSET(j, &read_fds)){
+						if (FD_ISSET(j, &clients)){
 							//ft_printf("active\n");
 							if (j != listener && j != i)
 								ft_sendall(j, buf, &buf_len, 0);

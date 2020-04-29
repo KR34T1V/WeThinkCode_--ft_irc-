@@ -5,7 +5,7 @@ int main(void){
 	char *port = "1025";
 	int socket_fd;
 	int numbytes;
-	char buf[BUFFER];
+	char buf[MSG_SIZE +1];
 	struct addrinfo hints;
 	struct addrinfo *server_info;
 	struct addrinfo *p;
@@ -53,7 +53,7 @@ int main(void){
 	//main loop
 	while (1){
 		c_getinput(socket_fd);
-		if ((numbytes = recv(socket_fd, buf, BUFFER - 1, 0)) == -1){
+		if ((numbytes = recv(socket_fd, buf, MSG_SIZE - 1, 0)) == -1){
 			perror("recv");
 			exit(1);
 		}
