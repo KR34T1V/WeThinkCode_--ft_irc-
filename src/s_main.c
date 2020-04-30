@@ -7,14 +7,11 @@
 int     main(){
 	char *port = "1025"; 
 
+	t_env	e;
+
 	fd_set clients;             //client fd list
 	fd_set read_fds;            //temp fd for select
 	char buf[MSG_SIZE];        //Buffer for Client Data
-
-	int fdmax;					//maximum fd number
-	int listener;				//listening fd
-
-
 	int i;
 	int buf_len;
 
@@ -22,35 +19,35 @@ int     main(){
 	FD_ZERO(&clients);			//clear clients
 	FD_ZERO(&read_fds);			//clear read_fds
 
-	listener = s_bindsocket(port);
-	s_listen(listener, &clients);
+	e.listener = s_bindsocket(port);
+	s_listen(e.listener, &clients);
 	//keep track of biggest file descriptor
-	fdmax = listener;
+	e.fd_max = e.listener;
 
 	//main loop
 	ft_printf("Listening...\n");
 	while (1){
 		read_fds = clients; //current clients
-		if (select(fdmax + 1, &read_fds, NULL, NULL, NULL) == -1){
+		if (select(e.fd_max + 1, &read_fds, NULL, NULL, NULL) == -1){
 			perror("select");
 			exit(5);
 		}
 		//check existing connections
 		i = 0;
-		while (i <= fdmax){
+		while (i <= e.fd_max){
 			if (FD_ISSET(i, &read_fds)){
 				//new connection
-				if (i == listener){
-					s_newclient(listener, &fdmax, &clients);
+				if (i == e.listener){
+					s_newclient(e.listener, &e.fd_max, &clients);
 				} else {
 					s_recvdata(i, &clients, buf);
 					s_get_args(buf);
 					buf_len = ft_strlen(buf);
-					for (int j = 0; j<=fdmax; j++){
+					for (int j = 0; j<=e.fd_max; j++){
 						//ft_printf("checking %d\n", j);
 						if (FD_ISSET(j, &clients)){
 							//ft_printf("active\n");
-							if (j != listener && j != i)
+							if (j != e.listener && j != i)
 								ft_sendall(j, buf, &buf_len, 0);
 						}
 					}

@@ -42,7 +42,16 @@ void                c_getinput(int fd);
 
 //STRUCTS
 typedef struct      s_client {
-    int             name;
+    int             fd;
+    char            ip_address[INET6_ADDRSTRLEN];
     char            nick[10];
+    char            buffer[MSG_SIZE];
 }                   t_client;
+
+typedef struct      s_env   {
+    int             listener;
+    int             fd_max;
+    void            *t_list;
+}                   t_env;
+
 #endif
