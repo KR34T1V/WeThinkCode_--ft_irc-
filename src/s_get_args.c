@@ -3,11 +3,12 @@
 /*
     Checks for valid commands. 
 */
-void s_get_args(char *msg){
+void s_get_args(t_env *e, int fd){
+    t_client *client;
     char **args;
     char *tmp;
-    
-    args = ft_strsplit_white(msg);
+    client = s_find_client(e, fd);
+    args = ft_strsplit_white(client->buffer);
     if (args[0][0] == ':'){
         ft_printf("Prefix ignored for now.");
     } else {
@@ -15,7 +16,7 @@ void s_get_args(char *msg){
         if (ft_strequ(tmp, "PASS"))
             ft_printf("%s", "PASS\n");
         if (ft_strequ(tmp,"NICK"))
-            ft_printf("%s", "NICK\n");
+            cmd_nick(e, fd, args[1]);
         if (ft_strequ(tmp,"QUIT"))
             ft_printf("%s", "QUIT\n");
         if (ft_strequ(tmp,"JOIN"))

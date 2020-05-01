@@ -11,11 +11,8 @@ int     main(){
 
 	fd_set clients;             //client fd list
 	fd_set read_fds;            //temp fd for select
-	char buf[MSG_SIZE];        //Buffer for Client Data
 	int i;
-	int buf_len;
 
-	e.t_list = NULL;
 	FD_ZERO(&clients);			//clear clients
 	FD_ZERO(&read_fds);			//clear read_fds
 
@@ -40,17 +37,9 @@ int     main(){
 				if (i == e.listener){
 					s_newclient(&e, &clients);
 				} else {
-					s_recvdata(i, &clients, buf);
-					s_get_args(buf);
-					buf_len = ft_strlen(buf);
-					for (int j = 0; j<=e.fd_max; j++){
-						//ft_printf("checking %d\n", j);
-						if (FD_ISSET(j, &clients)){
-							//ft_printf("active\n");
-							if (j != e.listener && j != i)
-								ft_sendall(j, buf, &buf_len, 0);
-						}
-					}
+					s_recvdata(&e, i, &clients);
+					s_get_args(&e, i);
+					s_msg_send(&e, i);
 				}
 			}
 			i++;

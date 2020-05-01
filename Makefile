@@ -41,7 +41,10 @@ SERVER_SRC :=	s_main.c \
 				s_listen.c \
 				s_newclient.c \
 				s_recvdata.c \
-				s_get_args.c
+				s_get_args.c \
+				s_find_client.c \
+				s_msg_send.c \
+				cmd_nick.c
 				
 CLIENT_SRC :=	c_main.c \
 				ft_getaddr_IP.c \
