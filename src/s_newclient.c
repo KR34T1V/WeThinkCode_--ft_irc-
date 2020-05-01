@@ -6,20 +6,20 @@ static void new_client(t_env *e, int fd){
 	t_client *client;
 	t_client *runner;
 
-	runner = e->clients;
 	if (!(client = (t_client *)ft_memalloc(sizeof(t_client)))){
 		perror("malloc");
 		return ;
 	}
 	client->fd = fd;
+	ft_strcpy(client->nick, "ANON");
 	client->next = NULL;
 	if (e->clients != NULL){
-		ft_printf("here\n");
-		while (runner && runner->next != NULL)
+		runner = e->clients;
+		while(runner && runner->next != NULL)
 			runner = runner->next;
-		ft_printf("here\n");
-		client->prev = runner;
 		runner->next = client;
+		client->prev = runner;
+		ft_printf("here %d\n", runner->fd);
 	} else {
 		e->clients = client;
 		client->prev = NULL;

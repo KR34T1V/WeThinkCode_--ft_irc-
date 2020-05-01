@@ -16,6 +16,7 @@ int     main(){
 	FD_ZERO(&clients);			//clear clients
 	FD_ZERO(&read_fds);			//clear read_fds
 
+	e.clients = NULL;
 	e.listener = s_bindsocket(port);
 	s_listen(e.listener, &clients);
 	//keep track of biggest file descriptor
