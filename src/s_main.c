@@ -15,7 +15,7 @@ int     main(){
 	int i;
 	int buf_len;
 
-
+	e.t_list = NULL;
 	FD_ZERO(&clients);			//clear clients
 	FD_ZERO(&read_fds);			//clear read_fds
 
@@ -38,7 +38,7 @@ int     main(){
 			if (FD_ISSET(i, &read_fds)){
 				//new connection
 				if (i == e.listener){
-					s_newclient(e.listener, &e.fd_max, &clients);
+					s_newclient(&e, &clients);
 				} else {
 					s_recvdata(i, &clients, buf);
 					s_get_args(buf);

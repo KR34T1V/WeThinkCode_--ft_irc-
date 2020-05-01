@@ -26,25 +26,11 @@
 
 #include "./constants.h"
 
-//GENERAL
-void 				*ft_getaddr_IP(struct sockaddr *sa);
-int                 ft_sendall(int fd, char *buf, int *len, int flags);
-
-//SERVER
-int 				s_bindsocket(const char *port);
-void				s_listen(int listener, fd_set *clients);
-void 				s_newclient(int listener, int *fdmax, fd_set *clients);
-int 				s_recvdata(int fd, fd_set *clients, char *buf);
-void                s_get_args(char *msg);
-
-//CLIENT
-void                c_getinput(int fd);
-
-//STRUCTS
+//DATA STRUCTURES
 typedef struct      s_client {
     int             fd;
     char            ip_address[INET6_ADDRSTRLEN];
-    char            nick[10];
+    char            nick[NICK_LENGTH + 1];
     char            buffer[MSG_SIZE];
 }                   t_client;
 
@@ -53,5 +39,20 @@ typedef struct      s_env   {
     int             fd_max;
     void            *t_list;
 }                   t_env;
+
+//GENERAL
+void 				*ft_getaddr_IP(struct sockaddr *sa);
+int                 ft_sendall(int fd, char *buf, int *len, int flags);
+
+//SERVER
+int 				s_bindsocket(const char *port);
+void				s_listen(int listener, fd_set *clients);
+void                s_newclient(t_env *e, fd_set *clients);
+int 				s_recvdata(int fd, fd_set *clients, char *buf);
+void                s_get_args(char *msg);
+
+//CLIENT
+void                c_getinput(int fd);
+
 
 #endif

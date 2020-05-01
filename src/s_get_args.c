@@ -1,26 +1,32 @@
 #include "../inc/private_irc.h"
 
-static void s_args_check(char *cmd){
-    char *tmp;
-    tmp = ft_strtoupper(cmd);
-    if (ft_strequ(tmp, "PASS"))
-        ft_printf("%s", "PASS");
-
-    if (ft_strequ(tmp,"NICK"))
-        ft_printf("%s", "NICK");
-}
-
+/*
+    Checks for valid commands. 
+*/
 void s_get_args(char *msg){
     char **args;
-    int  len;
-    len = ft_wordcount_white(msg);
+    char *tmp;
+    
     args = ft_strsplit_white(msg);
-    ft_printf("%d\n",len);
     if (args[0][0] == ':'){
-        ft_printf("PREFIX");
+        ft_printf("Prefix ignored for now.");
     } else {
-        s_args_check(args[0]);
+        tmp = ft_strtoupper(args[0]);
+        if (ft_strequ(tmp, "PASS"))
+            ft_printf("%s", "PASS\n");
+        if (ft_strequ(tmp,"NICK"))
+            ft_printf("%s", "NICK\n");
+        if (ft_strequ(tmp,"QUIT"))
+            ft_printf("%s", "QUIT\n");
+        if (ft_strequ(tmp,"JOIN"))
+            ft_printf("%s", "JOIN\n");
+        if (ft_strequ(tmp,"LEAVE"))
+            ft_printf("%s", "LEAVE\n");
+        if (ft_strequ(tmp,"WHO"))
+            ft_printf("%s", "WHO\n");
+        if (ft_strequ(tmp,"MSG"))
+            ft_printf("%s", "MSG\n");
+        if (ft_strequ(tmp,"CONNECT"))
+            ft_printf("%s", "CONNECT\n");
     }
-    for(int i = 0; args[i] != NULL; i++)
-            ft_printf("%s\n", args[i]);
 }
