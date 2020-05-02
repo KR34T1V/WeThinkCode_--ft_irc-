@@ -6,7 +6,7 @@ void s_msg_send(t_env *e, int sender_fd){
     char    *tmp;
     int     len;
     
-    if(!(client = s_find_client(e, sender_fd)))
+    if(!(client = s_find_client(e, sender_fd)) || !ft_strlen(client->buffer))
         return ;
     tmp = ft_strjoin(client->nick, MSG_SEPERATOR);
     msg = ft_strjoin(tmp, client->buffer);

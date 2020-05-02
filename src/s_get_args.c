@@ -10,9 +10,7 @@ void s_get_args(t_env *e, int fd){
 
     if (!(client = s_find_client(e, fd)))
         return ;
-    ft_printf("fuck\n", fd);
     if(ft_strlen(client->buffer) && (args = ft_strsplit_white(client->buffer))){
-        ft_printf("fuck\n", fd);
 
         if (args[0][0] == ':'){
             ft_printf("Prefix ignored for now.");

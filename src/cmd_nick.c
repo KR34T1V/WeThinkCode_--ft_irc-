@@ -18,9 +18,9 @@ int cmd_nick(t_env *e,int fd, char *nick){
     t_client *client;
     
     if ((client = s_find_client(e, fd))){
+        ft_strclr(client->buffer);
         if (check_nick(e,nick)){
             ft_strncpy(client->nick, nick, NICK_LENGTH);
-            ft_printf("nickname = |%s|", client->nick);
             return (1);
         }
     }
