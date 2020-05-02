@@ -56,6 +56,7 @@ void                s_get_args(t_env *e, int fd);
 t_client            *s_find_client(t_env *e, int fd);
 int                 cmd_nick(t_env *e,int fd, char *nick);
 void                s_msg_send(t_env *e, int sender_fd);
+void                s_rmv_client(t_env *e, int fd);
 
 //CLIENT
 void                c_getinput(int fd);

@@ -10,6 +10,7 @@ int	s_recvdata(t_env *e ,int fd, fd_set *clients){
 		//error or client closed connection.
 		if (nbytes == 0){
 			//connection closed
+			s_rmv_client(e, fd);
 			ft_printf("IRC Server: socket %d disconnected\n", fd);
 		} else {
 			perror("recv");
@@ -19,7 +20,9 @@ int	s_recvdata(t_env *e ,int fd, fd_set *clients){
 		return(0);
 	}
 	//data received from client
+	ft_printf("here bob\n");
 	ft_strcpy(&client->buffer[nbytes - 1],"\n\r\0");
-	ft_printf("%d bytes from %d: %s\n", nbytes, fd, client->buffer);
+	if (ft_strlen(client->buffer))
+		ft_printf("%d bytes from %d: %s\n", nbytes, fd, client->buffer);
 	return (nbytes);
 }

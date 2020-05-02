@@ -19,7 +19,6 @@ static void new_client(t_env *e, int fd){
 			runner = runner->next;
 		runner->next = client;
 		client->prev = runner;
-		ft_printf("here %d\n", runner->fd);
 	} else {
 		e->clients = client;
 		client->prev = NULL;
