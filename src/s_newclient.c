@@ -3,16 +3,17 @@
 	Creates a new client element in the environment "e", Initialising the Client.
 */
 static void new_client(t_env *e, int fd){
-	t_client *client;
-	t_client *runner;
+	t_client 	*client;
+	t_client 	*runner;
+	uint8_t		*buffer;
 
-	if (!(client = (t_client *)ft_memalloc(sizeof(t_client)))){
-		perror("malloc");
-		return ;
-	}
+	assert(e && fd);
+	assert((client = (t_client *)ft_memalloc(sizeof(t_client))));
+	assert((buffer = (uint8_t *)ft_memalloc(sizeof(uint8_t) * MSG_BUFFER_SIZE)));
 	client->fd = fd;
 	ft_strcpy(client->nick, "ANON");
 	client->next = NULL;
+	client->buffer = ft_cbuf_init(buffer, MSG_BUFFER_SIZE);
 	if (e->clients != NULL){
 		runner = e->clients;
 		while(runner && runner->next != NULL)

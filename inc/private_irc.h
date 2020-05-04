@@ -11,6 +11,7 @@
 
 //Includes
 #include "../lib/printf/inc/export_ft_printf.h"
+#include "./export_cbuf.h"
 #include <sys/types.h>
 #include <stdlib.h> 
 #include <sys/socket.h>
@@ -20,6 +21,7 @@
 #include <stdio.h>
 #include <sys/time.h>
 #include <arpa/inet.h>
+#include <assert.h>
 
 
 //Declarations
@@ -31,7 +33,7 @@ typedef struct          s_client {
     int                 fd;
     char                ip_address[INET6_ADDRSTRLEN];
     char                nick[NICK_LENGTH + 1];
-    char                buffer[MSG_SIZE];
+    t_cbuf              buffer;
     int                 *channels;
     struct s_client     *next;
     struct s_client     *prev;

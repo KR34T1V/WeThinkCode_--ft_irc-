@@ -18,18 +18,18 @@ typedef t_cbuf_actual *t_cbuf;
     Pass in a storage buffer and size 
     Returns a circular buffer handle
 */
-t_cbuf  cbuf_init(uint8_t* buffer, size_t size);
+t_cbuf  ft_cbuf_init(uint8_t* buffer, size_t size);
 
 /*
     Free a circular buffer structure.
     Does not free data buffer; owner is responsible for that
 */
-void    cbuf_free(t_cbuf cbuf);
+void    ft_cbuf_free(t_cbuf cbuf);
 
 /*
 Reset the circular buffer to empty, head == tail
 */
-void    cbuf_reset(t_cbuf cbuf);
+void    ft_cbuf_reset(t_cbuf cbuf);
 
 /*
 Adds data to the buffer
@@ -37,30 +37,30 @@ Old data can be overwritten
 Returns -1 if buffer is full and overwrite paramater set to "false".
 Returns 0 on success.
 */
-int    cbuf_put(t_cbuf cbuf, uint8_t data, bool overwrite);
+int    ft_cbuf_put(t_cbuf cbuf, uint8_t data, bool overwrite);
 
 /*
 Retrieve a value from the buffer
 Returns 0 on success, -1 if the buffer is empty
 */
-int     cbuf_get(t_cbuf cbuf, uint8_t * data);
+int     ft_cbuf_get(t_cbuf cbuf, uint8_t * data);
 
 /*
 Returns true if the buffer is empty
 */
-bool    cbuf_isempty(t_cbuf cbuf);
+bool    ft_cbuf_isempty(t_cbuf cbuf);
 /*
 Returns true if the buffer is full
 */
-bool    cbuf_isfull(t_cbuf cbuf);
+bool    ft_cbuf_isfull(t_cbuf cbuf);
 
 /*
 Returns the maximum size of the buffer
 */
-size_t  cbuf_max(t_cbuf cbuf);
+size_t  ft_cbuf_max(t_cbuf cbuf);
 
 /*
 Returns the current number of elements in the buffer
 */
-size_t  cbuf_size(t_cbuf cbuf);
+size_t  ft_cbuf_size(t_cbuf cbuf);
 #endif
