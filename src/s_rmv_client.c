@@ -12,6 +12,8 @@ void s_rmv_client(t_env *e, int fd){
             e->clients = client->next;
         client->next = NULL;
         client->prev = NULL;
+        ft_memdel((void **)&client->buffer);
+        ft_cbuf_free(client->cbuf);
         ft_memdel((void **)&client);
     }
 }

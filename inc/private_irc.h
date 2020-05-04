@@ -33,7 +33,8 @@ typedef struct          s_client {
     int                 fd;
     char                ip_address[INET6_ADDRSTRLEN];
     char                nick[NICK_LENGTH + 1];
-    t_cbuf              buffer;
+    char                *buffer;
+    t_cbuf              cbuf;
     int                 *channels;
     struct s_client     *next;
     struct s_client     *prev;
