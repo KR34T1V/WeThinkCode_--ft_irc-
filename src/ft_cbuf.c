@@ -70,7 +70,6 @@ Returns 0 on success.
 */
 int    ft_cbuf_put(t_cbuf cbuf, uint8_t data, bool overwrite){
     assert(cbuf && cbuf->buffer);
-	ft_printf("here!!!!!!\n");
     if (!overwrite){
         if (!ft_cbuf_isfull(cbuf)){
             cbuf->buffer[cbuf->head] = data;
@@ -79,7 +78,6 @@ int    ft_cbuf_put(t_cbuf cbuf, uint8_t data, bool overwrite){
         }
         return (-1);
     }
-
     cbuf->buffer[cbuf->head] = data;
     ft_cbuf_adv_pointer(cbuf);
     return (0);

@@ -18,10 +18,11 @@ static void new_client(t_env *e, int fd){
 		while(runner && runner->next != NULL)
 			runner = runner->next;
 		runner->next = client;
+		// ft_printf("prev %d\ncurrent %d\n",runner->fd, runner->next->fd);
 		client->prev = runner;
 	} else {
-		e->clients = client;
 		client->prev = NULL;
+		e->clients = client;
 	}
 }
 

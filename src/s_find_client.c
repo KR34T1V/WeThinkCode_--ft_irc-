@@ -7,6 +7,7 @@ t_client *s_find_client(t_env *e, int fd){
         return NULL;
     run = e->clients;
     while (run){
+        // ft_printf("current check fd: %d\n", run->fd);
         if (run->fd == fd)
             return (run);
         run = run->next;

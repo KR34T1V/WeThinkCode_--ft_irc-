@@ -4,7 +4,7 @@
     Ensures that all data in "buf" is successfully sent to "fd", returns 0 on success
     ammends "len" to match the total amount of data sent. Returns -1 on failure.
 */
-int ft_sendall(int fd, char *buf, int *len, int flags)
+int ft_sendall(int fd, uint8_t *buf, int *len, int flags)
 {
     int total = 0;
     int bytesleft = *len;
