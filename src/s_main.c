@@ -39,7 +39,8 @@ int     main(){
 					s_newclient(&e, &clients);
 				} else {
 					s_recvdata(&e, i, &clients);
-					s_get_args(&e, i);
+					//get_next_line
+					//s_get_args(&e, i);
 					s_msg_send(&e, i);
 				}
 			}

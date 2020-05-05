@@ -2,11 +2,14 @@
 
 int	s_recvdata(t_env *e ,int fd, fd_set *clients){
 	t_client *client;
+
+	uint8_t tmp_buf[MSG_SIZE];
 	int nbytes;
+	int count;
 
 	client = s_find_client(e, fd);
 	//client exists and sent data
-	if ((nbytes = recv(fd, client->buffer, MSG_SIZE -2, 0)) <= 0){
+	if ((nbytes = recv(fd, tmp_buf, MSG_SIZE, 0)) <= 0){
 		//error or client closed connection.
 		if (nbytes == 0){
 			//connection closed
@@ -20,9 +23,15 @@ int	s_recvdata(t_env *e ,int fd, fd_set *clients){
 		return(0);
 	}
 	//data received from client
-	ft_printf("here bob\n");
-	ft_strcpy(&client->buffer[nbytes - 1],"\n\r\0");
-	if (ft_strlen(client->buffer))
-		ft_printf("%d bytes from %d: %s\n", nbytes, fd, client->buffer);
+	count = 0;
+	ft_printf("here\n");
+	while (count < nbytes && tmp_buf[count]){
+		ft_printf("here!!!!!\n");
+		ft_cbuf_put(client->cbuf, tmp_buf[count++], MSG_BUFFER_OVERWRITE);
+	}
+	ft_printf("here3\n");
+	
+	//if (ft_strlen(client->buffer))
+	//	ft_printf("%d bytes from %d: %s\n", nbytes, fd, client->buffer);
 	return (nbytes);
 }
