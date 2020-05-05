@@ -9,6 +9,6 @@ void c_getinput(int fd){
     input[len - 1] = '\0';
     ft_printf("input: |%s|\n", input);
     //replace \n
-    ft_sendall(fd, input, &len, 0);
+    ft_sendall(fd, (uint8_t *)input, &len, 0);
     ft_strdel(&input);
 }
