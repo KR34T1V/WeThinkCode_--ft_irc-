@@ -5,17 +5,23 @@ void s_msg_send(t_env *e, int sender_fd){
     uint8_t     data;
     int         count;
     char        buffer[MSG_BUFFER_SIZE];
+    char        *tmp = buffer;
+
     
     if(!(client = s_find_client(e, sender_fd)))
         return ;
-    count = 0;
+    ft_strclr(buffer);
+    tmp = ft_strcat(tmp, client->nick);
+    tmp = ft_strcat(tmp, MSG_SEPERATOR);
+    count = ft_strlen(tmp);
     while((ft_cbuf_get(client->cbuf, &data)) == 0){
-        buffer[count++] = (char) data;
+        tmp[count++] = (char) data;
     }
-    buffer[count] = '\0';
+    tmp[count] = '\0';
+    ft_printf("%s\n", tmp);
     for (int j = 0; j<=e->fd_max; j++){
         if (s_find_client(e, j))
             if (j != sender_fd)
-                ft_sendall(j, (uint8_t *) buffer, &count, 0);
+                ft_sendall(j, (uint8_t *) tmp, &count, 0);
     }
 }

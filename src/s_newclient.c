@@ -8,11 +8,11 @@ static void new_client(t_env *e, int fd){
 
 	assert(e && fd);
 	assert((client = (t_client *)ft_memalloc(sizeof(t_client))));
-	assert((client->buffer = (char *)ft_memalloc(sizeof(uint8_t) * MSG_BUFFER_SIZE)));
+	assert((client->buffer = (char *)ft_memalloc(sizeof(uint8_t) * MSG_SIZE + 1)));
 	client->fd = fd;
 	ft_strcpy(client->nick, "ANON");
 	client->next = NULL;
-	client->cbuf = ft_cbuf_init((uint8_t *)client->buffer, MSG_BUFFER_SIZE);
+	client->cbuf = ft_cbuf_init((uint8_t *)client->buffer, MSG_BUFFER_SIZE + 1);
 	if (e->clients != NULL){
 		runner = e->clients;
 		while(runner && runner->next != NULL)
