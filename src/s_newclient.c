@@ -8,9 +8,10 @@ static void new_client(t_env *e, int fd){
 
 	assert(e && fd);
 	assert((client = (t_client *)ft_memalloc(sizeof(t_client))));
-	assert((client->buffer = (char *)ft_memalloc(sizeof(uint8_t) * MSG_SIZE + 1)));
+	assert((client->buffer = (char *)ft_memalloc(sizeof(uint8_t) * MSG_BUFFER_SIZE + 1)));
 	client->fd = fd;
 	ft_strcpy(client->nick, "ANON");
+	ft_memset(client->cmd, '\0', MSG_SIZE + 1);
 	client->next = NULL;
 	client->cbuf = ft_cbuf_init((uint8_t *)client->buffer, MSG_BUFFER_SIZE + 1);
 	if (e->clients != NULL){

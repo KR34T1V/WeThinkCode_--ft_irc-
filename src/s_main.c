@@ -40,7 +40,6 @@ int     main(){
 				} else {
 					s_recvdata(&e, i, &clients);
 					//get_next_line
-					//s_get_args(&e, i);
 					s_msg_send(&e, i);
 				}
 			}
