@@ -36,7 +36,7 @@ typedef struct          s_client {
     char                cmd[MSG_SIZE + 1];
     char                *buffer;
     t_cbuf              cbuf;
-    int                 *channels;
+    int                 channel;
     struct s_client     *next;
     struct s_client     *prev;
 }                       t_client;
