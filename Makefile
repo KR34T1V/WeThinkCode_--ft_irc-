@@ -45,7 +45,14 @@ SERVER_SRC :=	s_main.c \
 				s_msg_send.c \
 				s_rmv_client.c \
 				ft_cbuf.c \
-				ft_read_cmd.c 
+				ft_read_cmd.c \
+				cmd_join.c \
+				cmd_msg.c \
+				cmd_nick.c \
+				cmd_who.c \
+				s_channel_ismember.c \
+				s_find_nick.c \
+				s_status_send.c
 				
 CLIENT_SRC :=	c_main.c \
 				ft_getaddr_IP.c \
