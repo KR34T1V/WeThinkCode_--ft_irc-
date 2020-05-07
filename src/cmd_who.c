@@ -22,7 +22,9 @@ void cmd_who(t_env *e, t_client *client){
         run = run->next;
     }
     if ((len = ft_strlen(msg)) > 0){
-        s_status_send(client, msg);
+        tmp = ft_strjoin(msg, "\n");
         ft_strdel(&msg);
+        s_status_send(client, tmp);
+        ft_strdel(&tmp);
     }
 }
