@@ -2,21 +2,19 @@
 #include <string.h>
 static void check_commands(t_env *e, t_client *client){
     char    **args;
+    char    *msg;
     char    *cmd;
-    int     i;
-
-    ft_printf("checking commands!\n");
     args = ft_strsplit_white(client->cmd);
     if (args && args[0]){
         cmd = ft_strtoupper(args[0]);
-        if (ft_strequ(cmd, CMD_MSG)){
-            ft_printf("msg command");
-            s_msg_send(e, client);
+        if (ft_strequ(cmd, CMD_MSG) && args[1]){
+            msg = client->cmd + (ft_strlen(CMD_MSG) + 1);
+            cmd_msg(e, client, args[1], msg);
         }
-    }
-    i = 1;
-    while (args && args[i]){
-        ft_printf("%s\n", args[i++]);
+        if (ft_strequ(cmd, CMD_WHO)){
+            cmd_who(e, client);
+        }
+
     }
     ft_strclr(client->cmd);
 }
@@ -40,7 +38,6 @@ void    ft_read_cmd(t_env *e, int fd){
     if(!(client = s_find_client(e, fd)))
         return ;
     read_buf(client);
-    ft_printf("cmd: %s\n", client->cmd);
     if(ft_strrchr(client->cmd, '\n'))
         check_commands(e, client);
 }
