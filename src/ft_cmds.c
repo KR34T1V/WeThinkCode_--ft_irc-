@@ -1,4 +1,22 @@
 #include "../inc/private_irc.h"
+
+void s_status_send(t_client *client, char *msg){
+    int len;
+    char *tmp;
+    char *tmp2;
+    
+    assert(client && msg);   
+    if (!(ft_strlen(msg) > 0))
+        return ;
+    tmp = ft_strjoin(SERVER_NAME, MSG_SEPERATOR);
+    tmp2 = tmp;
+    tmp = ft_strjoin(tmp, msg);
+    ft_strdel(&tmp2);
+    len = ft_strlen(tmp) + 1;
+    ft_sendall(client->fd, tmp, &len, 0);
+    ft_strdel(&tmp);
+}
+
 int     s_channel_ismember(t_client *client, int channel){
 
     if (client->channel == channel)
@@ -61,6 +79,32 @@ void cmd_who(t_env *e, t_client *client){
         }
         run = run->next;
     }
-    if ((len = ft_strlen(msg)) > 0)
-        ft_sendall(client->fd, (uint8_t *) msg, &len, 0);
+    if ((len = ft_strlen(msg)) > 0){
+        s_status_send(client, msg);
+        ft_strdel(&msg);
+    }
+}
+
+void cmd_nick(t_env *e, t_client *client, char *nick){
+    assert(e && client && nick);
+    if (!(ft_strlen(nick) > 0))
+        s_status_send(client, "Nick too short, please try another.");
+    if (s_find_nick(e, nick) || ft_strequ(nick, SERVER_NAME)){
+        s_status_send(client, "Nick already in use, please try another.");
+    } else if (ft_strlen(nick) > NICK_LENGTH) {
+        s_status_send(client, "Nick too long, please try another.");
+    }
+    else {
+        ft_strcpy(client->nick, nick);
+        s_status_send(client, "Nick successfully changed.");
+    }
+}
+
+void cmd_join(t_client *client, char *msg){
+    assert(client);
+    if (ft_strlen(msg) > 0){
+        client->channel = ft_atoi(msg);
+        s_status_send(client, "Channel changed");
+    }
+    s_status_send(client, "Channel change failed, please try again.");
 }

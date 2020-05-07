@@ -1,6 +1,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#define SERVER_NAME "SERVER"
 #define LISTEN_BACKLOG 10
 #define MAX_CLIENTS 10
 #define NICK_LENGTH 9
