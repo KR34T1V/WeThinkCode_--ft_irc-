@@ -18,6 +18,9 @@ void cmd_msg(t_env *e, t_client *client, char *nick, char *msg){
     if ((receiver = s_find_nick(e, nick))){
         msg = ft_strtrim(msg + ft_strlen(nick));
         tmp = ft_strjoin(tmp, msg);
+        ft_strdel(&tmp2);
+        tmp2 = tmp;
+        tmp = ft_strjoin(tmp, "\n");
         ft_strdel(&msg);
     }   else {
         tmp = ft_strjoin(tmp, msg);

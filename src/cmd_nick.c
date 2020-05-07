@@ -10,6 +10,7 @@ void cmd_nick(t_env *e, t_client *client, char *nick){
         s_status_send(client, "Nick too long, please try another.\n");
     }
     else {
+        nick[ft_strlen(nick) - 1] = '\0';
         ft_strcpy(client->nick, nick);
         s_status_send(client, "Nick successfully changed.\n");
     }

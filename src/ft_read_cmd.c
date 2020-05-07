@@ -11,8 +11,16 @@ static void check_commands(t_env *e, t_client *client){
             msg = client->cmd + (ft_strlen(CMD_MSG) + 1);
             cmd_msg(e, client, args[1], msg);
         }
+        if (ft_strequ(cmd, CMD_NICK)){
+            msg = client->cmd + (ft_strlen(CMD_NICK) + 1);
+            cmd_nick(e, client, msg);
+        }
         if (ft_strequ(cmd, CMD_WHO)){
             cmd_who(e, client);
+        }
+        if (ft_strequ(cmd, CMD_JOIN)){
+            msg = client->cmd + (ft_strlen(CMD_JOIN) + 1);
+            cmd_join(client, msg);
         }
 
     }

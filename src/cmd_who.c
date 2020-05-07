@@ -16,7 +16,7 @@ void cmd_who(t_env *e, t_client *client){
                 msg = ft_strjoin(msg, ", ");
                 ft_strdel(&tmp);
             }
-            msg = ft_strjoin(msg, client->nick);
+            msg = ft_strjoin(msg, run->nick);
             ft_strdel(&tmp);
         }
         run = run->next;
