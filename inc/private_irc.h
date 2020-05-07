@@ -58,9 +58,9 @@ void                s_newclient(t_env *e, fd_set *clients);
 int 				s_recvdata(t_env *e, int fd, fd_set *clients);
 t_client            *s_find_client(t_env *e, int fd);
 int                 cmd_nick(t_env *e,int fd, char *nick);
-void                s_msg_send(t_env *e, int sender_fd);
+void                s_msg_send(t_env *e, t_client *client);
 void                s_rmv_client(t_env *e, int fd);
-void                ft_read_cmd(t_client *client);
+void                ft_read_cmd(t_env *e, int fd);
 
 //CLIENT
 void                c_getinput(int fd);

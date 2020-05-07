@@ -39,8 +39,7 @@ int     main(){
 					s_newclient(&e, &clients);
 				} else {
 					s_recvdata(&e, i, &clients);
-					//get_next_line
-					s_msg_send(&e, i);
+    				ft_read_cmd(&e, i);
 				}
 			}
 			i++;

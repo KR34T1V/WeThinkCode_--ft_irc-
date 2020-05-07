@@ -9,4 +9,8 @@
 #define MSG_BUFFER_OVERWRITE 1
 #define MSG_SEPERATOR " : "
 
+//commands;
+#define CMD_MSG "MSG"
+#define CMD_WHO "WHO"
+
 #endif
