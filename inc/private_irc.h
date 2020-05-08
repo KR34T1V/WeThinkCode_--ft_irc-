@@ -62,7 +62,7 @@ void                s_newclient(t_env *e, fd_set *clients);
 void                s_msg_send(t_env *e, t_client *client);
 void                s_rmv_client(t_env *e, int fd);
 void                ft_read_cmd(t_env *e, int fd);
-void                cmd_join(t_client *client, char *msg);
+void                cmd_join(t_env *e, t_client *client, char *msg);
 void                cmd_msg(t_env *e, t_client *client, char *nick, char *msg);
 void                cmd_nick(t_env *e, t_client *client, char *nick);
 void                cmd_who(t_env *e, t_client *client);

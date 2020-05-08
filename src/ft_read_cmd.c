@@ -17,7 +17,7 @@ static void check_commands(t_env *e, t_client *client){
             cmd_who(e, client);
         } else if (ft_strequ(cmd, CMD_JOIN)){
             msg = client->cmd + (ft_strlen(CMD_JOIN) + 1);
-            cmd_join(client, msg);
+            cmd_join(e, client, msg);
         } else {
             s_status_send(client, "Invalid command.\n");
         }
