@@ -7,7 +7,6 @@ void cmd_who(t_env *e, t_client *client){
     int         len;
 
     assert(e && client);
-    msg = ft_strnew(1);
     run = e->clients;
     while (run){
         if (run->channel == client->channel){

@@ -39,4 +39,5 @@ void cmd_msg(t_env *e, t_client *client, char *nick, char *msg){
             receiver = receiver->next;
         }
     }
+    ft_strdel(&tmp);
 }
