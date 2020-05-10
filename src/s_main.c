@@ -4,18 +4,21 @@
 	IRC Server main
 */
 
-int     main(){
-	char *port = "1025"; 
-
+int     main(int ac, char** av){
+	char	*port;
 	t_env	e;
+	fd_set	clients;             //client fd list
+	fd_set	read_fds;            //temp fd for select
+	int		i;
 
-	fd_set clients;             //client fd list
-	fd_set read_fds;            //temp fd for select
-	int i;
-
+	if (ac < 2){
+		ft_printf("Usage: ./server [port] \n");
+		return(0);
+	}
+	port = av[1];
+	ft_printf("Preparing port: %s\n", port);
 	FD_ZERO(&clients);			//clear clients
 	FD_ZERO(&read_fds);			//clear read_fds
-
 	e.clients = NULL;
 	e.listener = s_bindsocket(port);
 	s_listen(e.listener, &clients);
@@ -41,6 +44,7 @@ int     main(){
 					s_recvdata(&e, i, &clients);
     				ft_read_cmd(&e, i);
 				}
+				sleep(5);
 			}
 			i++;
 		}	//Clients loop

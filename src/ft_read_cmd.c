@@ -21,8 +21,8 @@ static void check_commands(t_env *e, t_client *client){
         } else {
             s_status_send(client, "Invalid command.\n");
         }
-
     }
+    ft_free2d_char(args);
     ft_strclr(client->cmd);
 }
 
