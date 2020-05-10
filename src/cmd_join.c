@@ -10,6 +10,15 @@ void cmd_join(t_env *e, t_client *client, char *msg){
         return ;
     }
     if (ft_strlen(msg) > 0 ){
+        run = e->clients;
+        tmp = ft_strjoin(client->nick, " left the channel.\n");
+        while (run){
+            if (run->channel == client->channel && run != client){
+                s_status_send(run, tmp);
+            }
+            run = run->next;
+        }
+        ft_strdel(&tmp);
         client->channel = ft_atoi(msg);
         run = e->clients;
         tmp = ft_strjoin(client->nick, " joined the channel.\n");
