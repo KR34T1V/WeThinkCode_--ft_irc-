@@ -14,7 +14,7 @@ int main(void){
 
 	//Bind a socket
 	ft_memset(&hints, 0, sizeof(hints));
-	hints.ai_family = AF_UNSPEC;				// ipv4 AF_INET | ipv6 AF_INET6
+	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_flags = AI_PASSIVE;
 
@@ -53,7 +53,7 @@ int main(void){
 	//main loop
 	while (1){
 		c_getinput(socket_fd);
-		if ((numbytes = recv(socket_fd, buf, MSG_SIZE - 1, 0)) == -1){
+		if ((numbytes = recv(socket_fd, buf, (MSG_BUFFER_SIZE - 1), 0)) == -1){
 			perror("recv");
 			exit(1);
 		}

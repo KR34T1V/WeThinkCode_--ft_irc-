@@ -13,7 +13,6 @@ static void run(t_env *e, fd_set *read_fds){
 				s_recvdata(e, i);
 				ft_read_cmd(e, i);
 			}
-			sleep(5);
 		}
 		i++;
 	}	//Clients loop
