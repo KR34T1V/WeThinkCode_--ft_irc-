@@ -52,7 +52,8 @@ SERVER_SRC :=	s_main.c \
 				cmd_who.c \
 				s_channel_ismember.c \
 				s_find_nick.c \
-				s_status_send.c
+				s_status_send.c \
+				s_assign_protocol.c
 				
 CLIENT_SRC :=	c_main.c \
 				ft_getaddr_IP.c \

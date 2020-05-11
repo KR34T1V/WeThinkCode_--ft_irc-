@@ -1,6 +1,6 @@
 #include "../inc/private_irc.h"
 
-int s_bindsocket(const char *port){
+int s_bindsocket(t_env *e, const char *port){
 	int val;
 	int listener;
 	struct addrinfo hints;
@@ -9,7 +9,7 @@ int s_bindsocket(const char *port){
 
 	//Bind a socket
 	ft_memset(&hints, 0, sizeof(hints));
-	hints.ai_family = AF_UNSPEC;				// ipv4 AF_INET | ipv6 AF_INET6
+	hints.ai_family = e->connection_type;
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_flags = AI_PASSIVE;
 

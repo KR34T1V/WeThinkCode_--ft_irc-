@@ -44,6 +44,7 @@ typedef struct          s_client {
 typedef struct      s_env   {
     int             listener;
     int             fd_max;
+    int             connection_type;
     t_client        *clients;
 }                   t_env;
 
@@ -52,7 +53,7 @@ void 				*ft_getaddr_IP(struct sockaddr *sa);
 int                 ft_sendall(int fd, uint8_t *buf, int *len, int flags);
 
 //SERVER
-int 				s_bindsocket(const char *port);
+int 				s_bindsocket(t_env *e, const char *port);
 int 				s_recvdata(t_env *e, int fd, fd_set *clients);
 int                 s_channel_ismember(t_client *client, int channel);
 t_client            *s_find_client(t_env *e, int fd);
@@ -67,6 +68,7 @@ void                cmd_msg(t_env *e, t_client *client, char *nick, char *msg);
 void                cmd_nick(t_env *e, t_client *client, char *nick);
 void                cmd_who(t_env *e, t_client *client);
 void                s_status_send(t_client *client, char *msg);
+int                 s_assign_protocol(t_env *e, const char *protocol);
 
 //CLIENT
 void                c_getinput(int fd);

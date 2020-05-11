@@ -11,16 +11,16 @@ int     main(int ac, char** av){
 	fd_set	read_fds;            //temp fd for select
 	int		i;
 
-	if (ac < 2){
-		ft_printf("Usage: ./server [port] \n");
+	if (ac < 3 || !s_assign_protocol(&e, av[2])){
+		ft_printf("Usage: ./server [port] [local/ipv4/ipv6] \n");
 		return(0);
 	}
 	port = av[1];
-	ft_printf("Preparing port: %s\n", port);
+	ft_printf("Preparing port: %s\nProtocol: %s\n", port, av[2]);
 	FD_ZERO(&clients);			//clear clients
 	FD_ZERO(&read_fds);			//clear read_fds
 	e.clients = NULL;
-	e.listener = s_bindsocket(port);
+	e.listener = s_bindsocket(&e, port);
 	s_listen(e.listener, &clients);
 	//keep track of biggest file descriptor
 	e.fd_max = e.listener;
