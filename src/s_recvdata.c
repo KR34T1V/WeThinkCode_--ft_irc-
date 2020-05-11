@@ -1,6 +1,6 @@
 #include "../inc/private_irc.h"
 
-int	s_recvdata(t_env *e ,int fd, fd_set *clients){
+int	s_recvdata(t_env *e ,int fd){
 	t_client *client;
 
 	uint8_t tmp_buf[MSG_SIZE];
@@ -19,7 +19,7 @@ int	s_recvdata(t_env *e ,int fd, fd_set *clients){
 			perror("recv");
 		}
 		close(fd);
-		FD_CLR(fd,clients); //remove from clients
+		FD_CLR(fd, &e->clients_fd_set); //remove from clients
 		return(0);
 	}
 	//data received from client

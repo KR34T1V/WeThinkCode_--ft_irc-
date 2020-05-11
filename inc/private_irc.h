@@ -45,6 +45,8 @@ typedef struct      s_env   {
     int             listener;
     int             fd_max;
     int             connection_type;
+    int             client_count;
+    fd_set	        clients_fd_set;
     t_client        *clients;
 }                   t_env;
 
@@ -54,12 +56,12 @@ int                 ft_sendall(int fd, uint8_t *buf, int *len, int flags);
 
 //SERVER
 int 				s_bindsocket(t_env *e, const char *port);
-int 				s_recvdata(t_env *e, int fd, fd_set *clients);
+int 				s_recvdata(t_env *e, int fd);
 int                 s_channel_ismember(t_client *client, int channel);
 t_client            *s_find_client(t_env *e, int fd);
 t_client            *s_find_nick(t_env *e, char *nick);
 void				s_listen(int listener, fd_set *clients);
-void                s_newclient(t_env *e, fd_set *clients);
+void                s_newclient(t_env *e);
 void                s_msg_send(t_env *e, t_client *client);
 void                s_rmv_client(t_env *e, int fd);
 void                ft_read_cmd(t_env *e, int fd);
