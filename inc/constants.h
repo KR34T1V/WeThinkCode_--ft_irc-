@@ -4,7 +4,7 @@
 #define SERVER_NAME "SERVER"
 #define LISTEN_BACKLOG 10
 #define LISTEN_TIMEOUT 2 //seconds
-#define MAX_CLIENTS 2
+#define MAX_CLIENTS 10
 #define NICK_LENGTH 9
 #define ANON_NICK "ANON"
 #define MSG_SIZE 512  //RFC 1459

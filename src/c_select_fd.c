@@ -1,10 +1,14 @@
 #include "../inc/private_irc_client.h"
 
-int c_select_fd(const t_env_c *e){
-    fd_set          read_fds;
+void    c_select_fd( t_env_c *e){
+    int             rtn;
     struct timeval  timeval;
     
-    read_fds = e->active_fds;
+    e->read_fds = e->server_fds;
     timeval.tv_sec = LISTEN_TIMEOUT;
-    return(select((e->fd_max + 1), &read_fds, 0, 0, &timeval));
+    rtn = select((e->fd_max + 1), &e->read_fds, 0, 0, &timeval);
+    if (rtn < 0){
+        perror("select");
+        exit(5);
+    }
 }

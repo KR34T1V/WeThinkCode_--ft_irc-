@@ -58,7 +58,12 @@ SERVER_SRC :=	s_main.c \
 CLIENT_SRC :=	c_main.c \
 				ft_getaddr_IP.c \
 				ft_sendall.c \
-				c_getinput.c
+				c_getinput.c \
+				c_select_fd.c \
+				c_bind.c \
+				c_connection_new.c \
+				c_connection_rmv.c \
+				c_find_server.c
 				
 #ADD SOURCE FILES HERE ^^^
 SERVER_OBJ := $(addprefix $(OBJ_DIR)/, $(SERVER_SRC:%.c=%.o))
