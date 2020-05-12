@@ -1,6 +1,6 @@
 #include "../inc/private_irc.h"
 
-void cmd_nick(t_env *e, t_client *client, char *nick){
+void cmd_nick(t_env_s *e, t_client *client, char *nick){
     t_client    *run;
     char        *tmp;
     char        *tmp2;

@@ -1,6 +1,6 @@
 #include "../inc/private_irc.h"
 
-void s_msg_send(t_env *e, t_client *client){
+void s_msg_send(t_env_s *e, t_client *client){
     int         count;
     char        buffer[MSG_BUFFER_SIZE];
     char        *tmp = buffer;

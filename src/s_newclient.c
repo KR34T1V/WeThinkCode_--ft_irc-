@@ -1,5 +1,5 @@
 #include "../inc/private_irc.h"
-static void max_clients(t_env *e, t_client *client){
+static void max_clients(t_env_s *e, t_client *client){
 	if (e->client_count > MAX_CLIENTS){
 		ft_printf("IRC Server: Server Full! %d/%d clients online.\n", MAX_CLIENTS, MAX_CLIENTS);
 		s_status_send(client, "Server full, please try again later.\n");
@@ -10,7 +10,7 @@ static void max_clients(t_env *e, t_client *client){
 /*
 	Creates a new client element in the environment "e", Initialising the Client.
 */
-static void new_client(t_env *e, int fd, const char *IP){
+static void new_client(t_env_s *e, int fd, const char *IP){
 	t_client 	*client;
 	t_client 	*runner;
 
@@ -42,7 +42,7 @@ static void new_client(t_env *e, int fd, const char *IP){
 	it will add the new connection to the "clients" set and if needed
 	ammend the "fdmax" to the largest fd size.
 */
-void s_newclient(t_env *e){
+void s_newclient(t_env_s *e){
 	int						newfd;
 	const char				*IP;
 	char					remoteIP[INET6_ADDRSTRLEN];

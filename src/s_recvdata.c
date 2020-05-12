@@ -1,6 +1,6 @@
 #include "../inc/private_irc.h"
 
-int	s_recvdata(t_env *e ,int fd){
+int	s_recvdata(t_env_s *e ,int fd){
 	t_client *client;
 
 	uint8_t tmp_buf[MSG_SIZE];

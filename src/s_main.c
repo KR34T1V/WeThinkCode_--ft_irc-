@@ -1,6 +1,6 @@
 #include "../inc/private_irc.h"
 
-static void run(t_env *e, fd_set *read_fds){
+static void run(t_env_s *e, fd_set *read_fds){
 	int		i;
 
 	i = 0;
@@ -20,7 +20,7 @@ static void run(t_env *e, fd_set *read_fds){
 
 int     main(int ac, char** av){
 	char	*port;
-	t_env	e;
+	t_env_s	e;
 	fd_set	read_fds;            //temp fd for select
 	struct timeval timeout;
 

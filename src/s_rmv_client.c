@@ -1,6 +1,6 @@
 #include "../inc/private_irc.h"
 
-void s_rmv_client(t_env *e, int fd){
+void s_rmv_client(t_env_s *e, int fd){
     t_client *client;
 
     if((client = s_find_client(e, fd))){

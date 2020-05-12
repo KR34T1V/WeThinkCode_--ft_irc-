@@ -1,16 +1,16 @@
 #include "../inc/private_irc.h"
 
 int main(void){
-	char *address = "127.0.0.1";
-	char *port = "1025";
-	int socket_fd;
-	int numbytes;
-	char buf[MSG_SIZE +1];
+	char 			*address = "127.0.0.1";
+	char 			*port = "1025";
+	int 			socket_fd;
+	int 			numbytes;
+	char 			buf[MSG_SIZE +1];
 	struct addrinfo hints;
 	struct addrinfo *server_info;
 	struct addrinfo *p;
-	int val;
-	char s[INET6_ADDRSTRLEN];
+	int 			val;
+	char 			s[INET6_ADDRSTRLEN];
 
 	//Bind a socket
 	ft_memset(&hints, 0, sizeof(hints));

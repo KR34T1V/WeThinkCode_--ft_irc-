@@ -1,6 +1,6 @@
 #include "../inc/private_irc.h"
 
-void cmd_who(t_env *e, t_client *client){
+void cmd_who(t_env_s *e, t_client *client){
     t_client    *run;
     char        *msg;
     char        *tmp;

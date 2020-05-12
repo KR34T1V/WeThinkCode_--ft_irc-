@@ -48,29 +48,29 @@ typedef struct      s_env   {
     int             client_count;
     fd_set	        clients_fd_set;
     t_client        *clients;
-}                   t_env;
+}                   t_env_s;
 
 //GENERAL
 void 				*ft_getaddr_IP(struct sockaddr *sa);
 int                 ft_sendall(int fd, uint8_t *buf, int *len, int flags);
 
 //SERVER
-int 				s_bindsocket(t_env *e, const char *port);
-int 				s_recvdata(t_env *e, int fd);
+int 				s_bindsocket(t_env_s *e, const char *port);
+int 				s_recvdata(t_env_s *e, int fd);
 int                 s_channel_ismember(t_client *client, int channel);
-t_client            *s_find_client(t_env *e, int fd);
-t_client            *s_find_nick(t_env *e, char *nick);
+t_client            *s_find_client(t_env_s *e, int fd);
+t_client            *s_find_nick(t_env_s *e, char *nick);
 void				s_listen(int listener, fd_set *clients);
-void                s_newclient(t_env *e);
-void                s_msg_send(t_env *e, t_client *client);
-void                s_rmv_client(t_env *e, int fd);
-void                ft_read_cmd(t_env *e, int fd);
-void                cmd_join(t_env *e, t_client *client, char *msg);
-void                cmd_msg(t_env *e, t_client *client, char *nick, char *msg);
-void                cmd_nick(t_env *e, t_client *client, char *nick);
-void                cmd_who(t_env *e, t_client *client);
+void                s_newclient(t_env_s *e);
+void                s_msg_send(t_env_s *e, t_client *client);
+void                s_rmv_client(t_env_s *e, int fd);
+void                ft_read_cmd(t_env_s *e, int fd);
+void                cmd_join(t_env_s *e, t_client *client, char *msg);
+void                cmd_msg(t_env_s *e, t_client *client, char *nick, char *msg);
+void                cmd_nick(t_env_s *e, t_client *client, char *nick);
+void                cmd_who(t_env_s *e, t_client *client);
 void                s_status_send(t_client *client, char *msg);
-int                 s_assign_protocol(t_env *e, const char *protocol);
+int                 s_assign_protocol(t_env_s *e, const char *protocol);
 
 //CLIENT
 void                c_getinput(int fd);

@@ -1,6 +1,6 @@
 #include "../inc/private_irc.h"
 
-int s_bindsocket(t_env *e, const char *port){
+int s_bindsocket(t_env_s *e, const char *port){
 	int val;
 	int listener;
 	struct addrinfo hints;

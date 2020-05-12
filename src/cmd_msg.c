@@ -1,6 +1,6 @@
 #include "../inc/private_irc.h"
 
-void cmd_msg(t_env *e, t_client *client, char *nick, char *msg){
+void cmd_msg(t_env_s *e, t_client *client, char *nick, char *msg){
     t_client    *receiver;
     int         len;
     char        *tmp;

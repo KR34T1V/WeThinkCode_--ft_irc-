@@ -1,6 +1,6 @@
 #include "../inc/private_irc.h"
 
-int s_assign_protocol(t_env *e, const char *protocol){
+int s_assign_protocol(t_env_s *e, const char *protocol){
     char *tmp;
 
     tmp = ft_strtoupper(protocol);

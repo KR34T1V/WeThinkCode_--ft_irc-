@@ -1,6 +1,6 @@
 #include "../inc/private_irc.h"
 
-void cmd_join(t_env *e, t_client *client, char *msg){
+void cmd_join(t_env_s *e, t_client *client, char *msg){
     t_client *run;
     char *tmp;
 

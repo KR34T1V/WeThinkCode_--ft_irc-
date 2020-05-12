@@ -1,6 +1,6 @@
 #include "../inc/private_irc.h"
 #include <string.h>
-static void check_commands(t_env *e, t_client *client){
+static void check_commands(t_env_s *e, t_client *client){
     char    **args;
     char    *msg;
     char    *cmd;
@@ -39,7 +39,7 @@ static void read_buf(t_client *client){
     client->cmd[count] = '\0';
 }
 
-void    ft_read_cmd(t_env *e, int fd){
+void    ft_read_cmd(t_env_s *e, int fd){
     t_client *client;
 
     if(!(client = s_find_client(e, fd)))

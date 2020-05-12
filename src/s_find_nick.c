@@ -1,6 +1,6 @@
 #include "../inc/private_irc.h"
 
-t_client *s_find_nick(t_env *e, char *nick){
+t_client *s_find_nick(t_env_s *e, char *nick){
     t_client *run;
 
     if (!e || !nick)
