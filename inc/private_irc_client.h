@@ -6,6 +6,7 @@
 //DATA STRUCTURES
 typedef struct  s_env_c {
     fd_set      active_fds;
+    int         fd_max;
 }               t_env_c;
 
 
