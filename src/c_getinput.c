@@ -1,4 +1,4 @@
-#include "../inc/private_irc.h"
+#include "../inc/private_irc_client.h"
 
 void c_getinput(int fd){
     int len;

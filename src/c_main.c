@@ -1,4 +1,4 @@
-#include "../inc/private_irc.h"
+#include "../inc/private_irc_client.h"
 
 int main(void){
 	char 			*address = "127.0.0.1";
