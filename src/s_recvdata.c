@@ -14,12 +14,10 @@ int	s_recvdata(t_env *e ,int fd){
 		if (nbytes == 0){
 			//connection closed
 			s_rmv_client(e, fd);
-			ft_printf("IRC Server: socket %d disconnected\n", fd);
 		} else {
+			s_rmv_client(e, fd);
 			perror("recv");
 		}
-		close(fd);
-		FD_CLR(fd, &e->clients_fd_set); //remove from clients
 		return(0);
 	}
 	//data received from client

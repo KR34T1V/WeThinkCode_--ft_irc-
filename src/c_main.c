@@ -29,9 +29,6 @@ int main(void){
 			p = p->ai_next;
 			continue;
 		}
-		//remove address already in use error
-		//val = 1;
-		//setsockopt(socket_fd, SOL_SOCKET, SO_REUSEADDR, &val, sizeof(int));
 		if (connect(socket_fd, p->ai_addr, p->ai_addrlen) < 0){
 			close(socket_fd);
 			perror("client: connect");
@@ -62,7 +59,7 @@ int main(void){
 			break;
 		} else {
 			buf[numbytes]= '\0';
-			ft_printf("client: received '%s'\n", buf);
+			ft_printf("%s", buf);
 		}
 	}
 	close(socket_fd);
