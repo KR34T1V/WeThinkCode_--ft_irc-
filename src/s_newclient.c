@@ -1,4 +1,5 @@
-#include "../inc/private_irc.h"
+#include "../inc/private_irc_server.h"
+
 static void max_clients(t_env_s *e, t_client *client){
 	if (e->client_count > MAX_CLIENTS){
 		ft_printf("IRC Server: Server Full! %d/%d clients online.\n", MAX_CLIENTS, MAX_CLIENTS);

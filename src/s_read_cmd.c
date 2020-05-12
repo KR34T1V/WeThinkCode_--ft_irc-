@@ -1,5 +1,5 @@
-#include "../inc/private_irc.h"
-#include <string.h>
+#include "../inc/private_irc_server.h"
+
 static void check_commands(t_env_s *e, t_client *client){
     char    **args;
     char    *msg;
@@ -39,7 +39,7 @@ static void read_buf(t_client *client){
     client->cmd[count] = '\0';
 }
 
-void    ft_read_cmd(t_env_s *e, int fd){
+void    s_read_cmd(t_env_s *e, int fd){
     t_client *client;
 
     if(!(client = s_find_client(e, fd)))

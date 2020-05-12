@@ -1,4 +1,4 @@
-#include "../inc/private_irc.h"
+#include "../inc/private_irc_server.h"
 
 void s_listen(int listener, fd_set *clients){
 	//listen

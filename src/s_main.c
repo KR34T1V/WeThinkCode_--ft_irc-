@@ -1,4 +1,4 @@
-#include "../inc/private_irc.h"
+#include "../inc/private_irc_server.h"
 
 static void run(t_env_s *e, fd_set *read_fds){
 	int		i;
@@ -11,7 +11,7 @@ static void run(t_env_s *e, fd_set *read_fds){
 				s_newclient(e);
 			} else {
 				s_recvdata(e, i);
-				ft_read_cmd(e, i);
+				s_read_cmd(e, i);
 			}
 		}
 		i++;

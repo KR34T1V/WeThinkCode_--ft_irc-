@@ -1,4 +1,4 @@
-#include "../inc/private_irc.h"
+#include "../inc/private_irc_server.h"
 
 int s_bindsocket(t_env_s *e, const char *port){
 	int val;

@@ -1,4 +1,4 @@
-#include "../inc/private_irc.h"
+#include "../inc/private_irc_server.h"
 
 void s_msg_send(t_env_s *e, t_client *client){
     int         count;

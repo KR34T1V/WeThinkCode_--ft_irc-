@@ -1,4 +1,4 @@
-#include "../inc/private_irc.h"
+#include "../inc/private_irc_server.h"
 
 int s_assign_protocol(t_env_s *e, const char *protocol){
     char *tmp;

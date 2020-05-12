@@ -1,4 +1,4 @@
-#include "../inc/private_irc.h"
+#include "../inc/private_irc_server.h"
 
 void s_status_send(t_client *client, char *msg){
     int len;

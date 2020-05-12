@@ -1,4 +1,4 @@
-#include "../inc/private_irc.h"
+#include "../inc/private_irc_server.h"
 
 void s_rmv_client(t_env_s *e, int fd){
     t_client *client;

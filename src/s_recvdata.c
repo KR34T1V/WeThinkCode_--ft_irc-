@@ -1,4 +1,4 @@
-#include "../inc/private_irc.h"
+#include "../inc/private_irc_server.h"
 
 int	s_recvdata(t_env_s *e ,int fd){
 	t_client *client;

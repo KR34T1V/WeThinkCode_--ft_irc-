@@ -1,4 +1,4 @@
-#include "../inc/private_irc.h"
+#include "../inc/private_irc_server.h"
 
 t_client *s_find_client(t_env_s *e, int fd){
     t_client *run;

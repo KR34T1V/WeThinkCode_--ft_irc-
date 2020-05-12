@@ -1,4 +1,4 @@
-#include "../inc/private_irc.h"
+#include "../inc/private_irc_server.h"
 
 bool    s_checkmsg(t_client *client){
     uint8_t *buffer;

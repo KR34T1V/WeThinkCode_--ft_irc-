@@ -1,4 +1,4 @@
-#include "../inc/private_irc.h"
+#include "../inc/private_irc_server.h"
 
 int     s_channel_ismember(t_client *client, int channel){
 

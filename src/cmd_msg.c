@@ -1,4 +1,4 @@
-#include "../inc/private_irc.h"
+#include "../inc/private_irc_server.h"
 
 void cmd_msg(t_env_s *e, t_client *client, char *nick, char *msg){
     t_client    *receiver;
