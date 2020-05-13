@@ -10,12 +10,11 @@ void cmd_who(t_env_s *e, t_client *client){
     msg = ft_strnew(1);
     while (run){
         if (run->channel == client->channel){
-            if (ft_strlen(msg) < 1){
-                msg = ft_strjoin(msg, run->nick);
+            if (ft_strlen(msg) > 0){
+                tmp = msg;
+                msg = ft_strjoin(msg, ", ");
+                ft_strdel(&tmp);
             }
-            tmp = msg;
-            msg = ft_strjoin(msg, ", ");
-            ft_strdel(&tmp);
             tmp = msg;
             msg = ft_strjoin(msg, run->nick);
             ft_strdel(&tmp);

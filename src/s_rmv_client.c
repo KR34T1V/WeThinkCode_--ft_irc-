@@ -17,7 +17,7 @@ void s_rmv_client(t_env_s *e, int fd){
     if((client = s_find_client(e, fd))){
         ft_printf("IRC Server: %s on %s disconnected from socket %d\n",client->nick, client->ip_address, client->fd);
         pick_out_client(e, client);
-        if (client->fd == e->fd_max)
+        if (e->clients && client->fd == e->fd_max)
             e->fd_max = e->clients->fd;
         ft_memdel((void **)&client->buffer);
         ft_cbuf_free(client->cbuf);

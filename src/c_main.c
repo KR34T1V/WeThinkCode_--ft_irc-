@@ -19,7 +19,6 @@ int main(void){
 		if (FD_ISSET(STDIN_FILENO, &e.read_fds))
 			c_getinput(socket_fd);
 		if (FD_ISSET(socket_fd, &e.read_fds)){
-			ft_printf("reciving: \n");
 			if ((numbytes = recv(socket_fd, buf, (MSG_BUFFER_SIZE - 1), 0)) == -1){
 				c_connection_rmv(&e, socket_fd);
 				perror("recv");

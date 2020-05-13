@@ -22,7 +22,6 @@ int	s_recvdata(t_env_s *e ,int fd){
 	}
 	//data received from client
 	count = 0;
-	ft_printf("Receiving from: %d\n", fd);
 	while (count < nbytes && tmp_buf[count]){
 		ft_cbuf_put(client->cbuf, tmp_buf[count++], MSG_BUFFER_OVERWRITE);
 	}
