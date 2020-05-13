@@ -1,13 +1,19 @@
 #include "../inc/private_irc_client.h"
 
-int main(void){
-	char 			*address = "127.0.0.1";
-	char 			*port = "1025";
+int main(int ac, char **av){
+	char 			*address;
+	char 			*port;
 	int 			socket_fd;
 	int 			numbytes;
 	char 			buf[MSG_SIZE +1];
 	t_env_c			e;
 
+	if (ac < 3){
+		ft_printf("Usage: ./client [host_address] [port]\n");
+		return (0);
+	}
+	address = av[1];
+	port = av[2];
 	FD_ZERO(&e.server_fds);
 	FD_ZERO(&e.read_fds);
 	FD_SET(STDIN_FILENO,&e.server_fds);
@@ -26,6 +32,7 @@ int main(void){
 			}
 			if (numbytes == 0){
 				ft_printf("IRC Client: Host closed connection.\n");
+				c_connection_rmv(&e, socket_fd);
 				break;
 			} else {
 				buf[numbytes]= '\0';
