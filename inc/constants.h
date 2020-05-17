@@ -16,6 +16,7 @@
 #define CMD_MSG "MSG"
 #define CMD_WHO "WHO"
 #define CMD_JOIN "JOIN"
+#define CMD_LEAVE "LEAVE"
 #define CMD_NICK "NICK"
 #define CMD_DC "DC"
 

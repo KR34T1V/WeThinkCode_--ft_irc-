@@ -18,6 +18,9 @@ static void check_commands(t_env_s *e, t_client *client){
         } else if (ft_strequ(cmd, CMD_JOIN)){
             msg = client->cmd + (ft_strlen(CMD_JOIN) + 1);
             cmd_join(e, client, msg);
+        } else if (ft_strequ(cmd, CMD_LEAVE)){
+            msg = client->cmd + (ft_strlen(CMD_LEAVE) + 1);
+            cmd_join(e, client, "0");
         } else if (ft_strequ(cmd, CMD_DC)){
             s_rmv_client(e, client->fd);
         } else {
